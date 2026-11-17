@@ -1,0 +1,33 @@
+<svg viewBox="0 0 440 360" role="img" aria-labelledby="figt">
+        <title id="figt">A cut through the ground: trees above, roots and soil layers below, and a small sensor in the soil sending a reading to a box on a post.</title>
+        <rect width="440" height="360" fill="#DCE7E4"/>
+        <rect y="150" width="440" height="60" fill="#6B4A2E"/>
+        <rect y="210" width="440" height="70" fill="#5A3A22"/>
+        <rect y="280" width="440" height="80" fill="#47301F"/>
+        <path d="M0 150 Q110 142 220 150 T440 150 V158 H0Z" fill="#4E7A45"/>
+        <g stroke="#3A2A1B" stroke-width="5" stroke-linecap="round" fill="none">
+          <path d="M96 150V84"/><path d="M228 150V52"/><path d="M330 150V104"/>
+        </g>
+        <g fill="#3F6B3A">
+          <circle cx="96" cy="70" r="30"/><circle cx="74" cy="90" r="20"/><circle cx="120" cy="88" r="22"/>
+          <circle cx="228" cy="40" r="36"/><circle cx="200" cy="64" r="26"/><circle cx="258" cy="62" r="28"/>
+          <circle cx="330" cy="92" r="24"/><circle cx="312" cy="108" r="16"/><circle cx="350" cy="108" r="17"/>
+        </g>
+        <g fill="#A8562B"><circle cx="212" cy="58" r="4.5"/><circle cx="244" cy="44" r="4.5"/><circle cx="232" cy="72" r="4.5"/><circle cx="104" cy="80" r="4"/><circle cx="336" cy="100" r="4"/></g>
+        <g stroke="#E9DFC8" stroke-width="2" fill="none" stroke-linecap="round" opacity=".75">
+          <path d="M96 152c-6 22-22 30-34 52M96 152c8 26 4 44 16 66M96 152c2 18-4 30-2 46"/>
+          <path d="M228 152c-10 30-34 44-44 84M228 152c12 34 6 66 24 104M228 152c0 30-8 50-4 86M228 152c18 20 40 26 52 54"/>
+          <path d="M330 152c-8 20-20 26-26 48M330 152c8 22 20 30 24 56"/>
+        </g>
+        <g>
+          <rect x="386" y="96" width="6" height="58" fill="#3A2A1B"/>
+          <rect x="370" y="84" width="38" height="24" rx="4" fill="#2F5D7C"/>
+          <circle cx="380" cy="96" r="3" fill="#BFE3C0"/>
+          <path d="M392 154V196H160V176" fill="none" stroke="#2F5D7C" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <rect x="152" y="166" width="16" height="30" rx="3" fill="#2F5D7C"/>
+          <path d="M160 196v18M154 196v12M166 196v12" stroke="#E9DFC8" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <g font-family="JetBrains Mono,monospace" font-size="12" fill="#E9DFC8">
+          <text x="14" y="190" class="en">topsoil</text><text x="14" y="190" class="te" style="font-family:Noto Sans Telugu,sans-serif">పై మట్టి</text><text x="14" y="252" class="en">subsoil</text><text x="14" y="252" class="te" style="font-family:Noto Sans Telugu,sans-serif">అడుగు మట్టి</text><text x="14" y="330" class="en">murram</text><text x="14" y="330" class="te" style="font-family:Noto Sans Telugu,sans-serif">మొరం</text>
+        </g>
+      </svg>
