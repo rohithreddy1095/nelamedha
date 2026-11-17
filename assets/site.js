@@ -69,3 +69,27 @@ function nmSat(id){
   if(window.ResizeObserver)new ResizeObserver(overlay).observe(v);
   show(false);overlay();
 }
+
+/* photos from the farm: a grid by year, and a large view with previous and next */
+function nmGallery(id){
+  var box=document.getElementById(id);if(!box)return;var base='img/',list=[],cur=0,dlg=document.getElementById('lightbox');
+  var MON={en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],te:['జన','ఫిబ్ర','మార్చి','ఏప్రి','మే','జూన్','జూలై','ఆగ','సెప్టెం','అక్టో','నవం','డిసెం']};
+  function date(d){if(!d)return '';var a=d.split('-').map(Number);return a[2]+' '+MON[nmLang()][a[1]-1]+' '+a[0]}
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function render(){
+    if(!list.length){box.innerHTML=document.getElementById('gallery-empty').innerHTML;return}
+    var by={},years=[];list.forEach(function(p,i){var y=p.date?p.date.slice(0,4):'—';if(!by[y]){by[y]=[];years.push(y)}by[y].push(i)});
+    box.innerHTML=years.map(function(y){return '<h2 class="g-year">'+(y==='—'?(nmLang()==='te'?'తేదీ లేనివి':'Undated'):y)+'</h2><div class="g-grid">'+by[y].map(function(i){var p=list[i];
+      return '<button class="g-item" type="button" data-i="'+i+'" style="aspect-ratio:'+p.w+'/'+p.h+'"><img src="'+base+p.thumb+'" loading="lazy" alt="'+esc(p.caption||date(p.date))+'" width="'+p.w+'" height="'+p.h+'"><span>'+esc(p.caption)+(p.caption&&p.date?' · ':'')+date(p.date)+'</span></button>'}).join('')+'</div>'}).join('')}
+  function open(i){cur=(i+list.length)%list.length;var p=list[cur];dlg.querySelector('img').src=base+p.src;dlg.querySelector('img').alt=p.caption||date(p.date);
+    dlg.querySelector('figcaption').textContent=[p.caption,date(p.date)].filter(Boolean).join(' · ')+'  ('+(cur+1)+' / '+list.length+')';
+    if(!dlg.open){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}}
+  box.addEventListener('click',function(e){var b=e.target.closest('.g-item');if(b)open(+b.dataset.i)});
+  dlg.querySelector('.lb-x').onclick=function(){dlg.close()};dlg.querySelector('.lb-p').onclick=function(){open(cur-1)};dlg.querySelector('.lb-n').onclick=function(){open(cur+1)};
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+  dlg.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')open(cur-1);if(e.key==='ArrowRight')open(cur+1)});
+  var x0=null;dlg.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  dlg.addEventListener('touchend',function(e){if(x0==null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)open(cur+(dx<0?1:-1));x0=null});
+  fetch(box.dataset.src,{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){list=j.photos||[];render()}).catch(function(){list=[];render()});
+  document.addEventListener('langchange',render);
+}

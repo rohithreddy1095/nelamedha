@@ -38,7 +38,7 @@ def head(pre, title_en, title_te, desc, path):
 '''
 
 def header(pre, cur):
-    items = [('', 'Home', 'మొదటి పేజీ'), ('farm/', 'The farm', 'పొలం'), ('projects/', 'Projects', 'పనులు'), ('research/', 'Research', 'పరిశోధన')]
+    items = [('', 'Home', 'మొదటి పేజీ'), ('farm/', 'The farm', 'పొలం'), ('projects/', 'Projects', 'పనులు'), ('research/', 'Research', 'పరిశోధన'), ('gallery/', 'Photos', 'ఫోటోలు')]
     links = ''.join(f'<a href="{pre}{h or "./"}"{" aria-current=page" if h == cur else ""}>{t(en, te)}</a>' for h, en, te in items)
     return f'''<div class="wrap">
   <header class="top">
@@ -48,6 +48,11 @@ def header(pre, cur):
 </div>
 <main id="main">
 '''
+
+from urllib.parse import quote
+WA_EN = 'https://wa.me/918680929591?text=' + quote('Hello, I found Nelamedha at nelamedha.in and would like to know more.')
+WA_TE = 'https://wa.me/918680929591?text=' + quote('నమస్తే, nelamedha.in లో నేలమేధ గురించి చూశాను. మరిన్ని వివరాలు తెలుసుకోవాలనుకుంటున్నాను.')
+WA_ICON = ('<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" style="vertical-align:-3px;margin-right:8px"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>')
 
 def contact():
     return f'''</main>
@@ -61,6 +66,7 @@ def contact():
     <div><dt>{t("Founder","వ్యవస్థాపకుడు")}</dt><dd class="plain">{t("Modugu Rohith Reddy","మోదుగు రోహిత్ రెడ్డి")}</dd></div>
     <div><dt>{t("Email","ఈమెయిల్")}</dt><dd>rohithreddy1095@gmail.com</dd></div>
     <div><dt>{t("Phone","ఫోన్")}</dt><dd>+91 86809 29591</dd></div>
+    <div><a class="btn wa en" href="{WA_EN}" target="_blank" rel="noopener">{WA_ICON}Message on WhatsApp</a><a class="btn wa te" lang="te" href="{WA_TE}" target="_blank" rel="noopener">{WA_ICON}వాట్సాప్‌లో మెసేజ్ చేయండి</a></div>
   </dl>
 </div></section>
 '''
@@ -424,8 +430,36 @@ res += f'''<div class="wrap">
     {t("Students, researchers and builders are welcome to try ideas here, on real ground. Write to us with what you would like to test.",
        "విద్యార్థులు, పరిశోధకులు, నిర్మాణకారులు ఇక్కడ నిజమైన నేలపై తమ ఆలోచనలు ప్రయత్నించడానికి స్వాగతం. మీరు ఏమి పరీక్షించాలనుకుంటున్నారో మాకు రాయండి.","p","sub")}
   </div>
-  <p><a class="btn" href="#contact">{t("Get in touch →","సంప్రదించండి →")}</a></p>
+  <p style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn wa en" href="{WA_EN}" target="_blank" rel="noopener">{WA_ICON}Message on WhatsApp</a><a class="btn wa te" lang="te" href="{WA_TE}" target="_blank" rel="noopener">{WA_ICON}వాట్సాప్‌లో మెసేజ్ చేయండి</a><a class="btn" href="#contact" style="background:var(--paper-2);color:var(--ink);border:1px solid var(--line)">{t("Email or call","ఈమెయిల్ లేదా ఫోన్")}</a></p>
 </div></section>
 '''
 res = res.replace('{pre}', pre) + contact() + footer(pre)
 page('research/index.html', res)
+
+# ---------- photos ----------
+pre = '../'
+gal = head(pre, 'Photos · Nelamedha', 'ఫోటోలు · నేలమేధ', 'Photographs of Mr Green Farms over the years: the food forest, the land and the work.', 'gallery/')
+gal += header(pre, 'gallery/')
+gal += f'''<div class="wrap">
+  <div class="page-head">
+    {t("Photos","ఫోటోలు","p","kicker")}
+    {t("The farm, on the ground","నేల మీద నుంచి పొలం","h1")}
+    {t("Photographs from the farm, newest first, added as the years go by. Tap one to see it large.",
+       "పొలం ఫోటోలు, కొత్తవి ముందు, ఏళ్లు గడిచే కొద్దీ జోడిస్తూ ఉంటాం. పెద్దగా చూడటానికి ఫోటోపై నొక్కండి.","p","lede")}
+  </div>
+  <div id="gallery" class="gallery" data-src="photos.json" aria-live="polite">
+    {t("Loading photos…","ఫోటోలు వస్తున్నాయి…","p","fine")}
+  </div>
+  <template id="gallery-empty">{t("The first photos from the farm are on their way. Until then, see the farm from above on the <a href='../farm/'>farm page</a>.",
+     "పొలం నుంచి మొదటి ఫోటోలు త్వరలో వస్తాయి. అప్పటి వరకు <a href='../farm/'>పొలం పేజీ</a>లో పైనుంచి పొలాన్ని చూడండి.","p","sub")}</template>
+</div>
+<dialog class="lightbox" id="lightbox" aria-label="Photo">
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="lb-x" type="button" aria-label="Close">×</button>
+  <button class="lb-p" type="button" aria-label="Previous photo">‹</button>
+  <button class="lb-n" type="button" aria-label="Next photo">›</button>
+</dialog>
+<div style="height:56px"></div>
+'''
+gal = gal.replace('{pre}', pre) + contact() + footer(pre) + '<script>nmGallery("gallery")</script>\n'
+page('gallery/index.html', gal)
