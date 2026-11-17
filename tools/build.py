@@ -72,8 +72,8 @@ def contact():
 '''
 
 def footer(pre, extra_en='', extra_te=''):
-    return f'''<footer><div class="wrap"><p>{t("Nelamedha · Ganugabanda, Suryapet district, Telangana · Being set up in 2026" + extra_en,
-      "నేలమేధ · గానుగబండ, సూర్యాపేట జిల్లా, తెలంగాణ · 2026లో ఏర్పాటవుతోంది" + extra_te)}</p></div></footer>
+    return f'''<footer><div class="wrap"><p>{t("Nelamedha · rural technology research · Ganugabanda, Suryapet district, Telangana · Being registered as a non-profit research foundation, 2026" + extra_en,
+      "నేలమేధ · గ్రామీణ సాంకేతిక పరిశోధన · గానుగబండ, సూర్యాపేట జిల్లా, తెలంగాణ · లాభాపేక్ష లేని పరిశోధన సంస్థగా నమోదవుతోంది, 2026" + extra_te)}</p></div></footer>
 <script src="{pre}assets/site.js"></script>
 '''
 
@@ -146,16 +146,16 @@ def pic(d, en, te, w=640, h=480, lazy=True):
 # ---------- home ----------
 pre = ''
 home = head(pre, 'Nelamedha · soil, with intelligence', 'నేలమేధ · నేలతో, మేధతో',
-            'Nelamedha is a research farm in Suryapet, Telangana, working on food forests, building with earth, and farm automation with small computers and AI.', '')
+            'Nelamedha researches rural technology for natural farming and self-sustaining living: food forests, building with earth, and farm automation with small computers and AI, on a farm in Suryapet, Telangana.', '')
 home += header(pre, '')
 home += f'''<div class="wrap">
   <div class="hero">
     <div>
-      {t("Research farm · Suryapet, Telangana","పరిశోధన పొలం · సూర్యాపేట, తెలంగాణ","p","kicker")}
+      {t("Rural technology research · Suryapet, Telangana","గ్రామీణ సాంకేతిక పరిశోధన · సూర్యాపేట, తెలంగాణ","p","kicker")}
       {t("Soil, with intelligence.","నేలతో, మేధతో.","h1")}
       {t('<b>nela</b> నేల soil, land · <b>medha</b> మేధ intelligence','<b>నేల</b> భూమి, మట్టి · <b>మేధ</b> తెలివి','p','gloss')}
-      {t("Nelamedha is a working farm in Telangana where we grow a food forest, build with earth, and teach small computers to look after the land. What works here is written down and shared.",
-         "నేలమేధ తెలంగాణలో ఒక పని చేసే పొలం. ఇక్కడ మేము ఆహార అడవిని పెంచుతున్నాం, మట్టితో ఇల్లు కడుతున్నాం, నేలను చూసుకునేలా చిన్న కంప్యూటర్లకు నేర్పిస్తున్నాం. ఇక్కడ పనిచేసేది రాసి, అందరితో పంచుకుంటాం.","p","lede")}
+      {t("Nelamedha researches rural technology that helps natural farming on the ground. On a working farm in Telangana we grow a food forest, build with earth, and teach small computers to look after the land, working towards a way of life that sustains itself end to end. What works here is written down and shared.",
+         "సహజ వ్యవసాయానికి నేల మీద నిజంగా ఉపయోగపడే గ్రామీణ సాంకేతికతపై నేలమేధ పరిశోధన చేస్తుంది. తెలంగాణలోని ఒక పని చేసే పొలంలో మేము ఆహార అడవిని పెంచుతున్నాం, మట్టితో ఇల్లు కడుతున్నాం, నేలను చూసుకునేలా చిన్న కంప్యూటర్లకు నేర్పిస్తున్నాం; మొదటి నుంచి చివరి వరకు తనను తాను నిలబెట్టుకునే జీవన విధానం వైపు. ఇక్కడ పనిచేసేది రాసి, అందరితో పంచుకుంటాం.","p","lede")}
       <p style="display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0"><a class="btn" href="farm/">{t("The farm’s story →","పొలం కథ →")}</a><a class="btn" href="research/" style="background:var(--paper-2);color:var(--ink);border:1px solid var(--line)">{t("Research directions","పరిశోధన దిశలు")}</a></p>
     </div>
     <figure class="fig">{HERO}
@@ -404,8 +404,8 @@ res += f'''<div class="wrap">
   <div class="page-head">
     {t("Research directions","పరిశోధన దిశలు","p","kicker")}
     {t("What we want to find out","మేము తెలుసుకోవాలనుకునేది","h1")}
-    {t("Questions we are working on, or about to. Each is tried on the farm first, with open hardware and open code.",
-       "మేము పని చేస్తున్న, లేదా త్వరలో మొదలుపెట్టే ప్రశ్నలు. ప్రతిదీ ముందు పొలంలోనే, ఓపెన్ హార్డ్‌వేర్, ఓపెన్ కోడ్‌తో ప్రయత్నిస్తాం.","p","lede")}
+    {t("Rural technology for natural farming and self-sustaining living: the questions we are working on, or about to. Each is tried on the farm first, with open hardware and open code.",
+       "సహజ వ్యవసాయానికి, స్వయం సమృద్ధ జీవనానికి గ్రామీణ సాంకేతికత: మేము పని చేస్తున్న, లేదా త్వరలో మొదలుపెట్టే ప్రశ్నలు. ప్రతిదీ ముందు పొలంలోనే, ఓపెన్ హార్డ్‌వేర్, ఓపెన్ కోడ్‌తో ప్రయత్నిస్తాం.","p","lede")}
   </div>
 </div>
 <section id="greenhouse"><div class="wrap">
